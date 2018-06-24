@@ -1,0 +1,50 @@
+@model User
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Welcome, @Model.first_name 
+                <a href="/logout" style="font-size: 12pt; text-decoration: underline; padding-left: 1em;">(Logout)</a>
+                <span style="font-size: 14pt; padding-left: 8em;">Current balance : $ @Model.balance</span>
+            </h1>
+            <hr>
+        </div>
+        <div class="col-md-6">
+            <form method="POST" asp-action="Process" asp-controller="Home" class="six columns">
+                @{
+                    if (TempData["Error"] != null)
+                    {
+                        <ul class="tempdata">
+                            <li>@TempData["Error"]</li>
+                        </ul>
+                    }
+                }
+                <div class="form-group col-md-10">
+                    <label for="amt">Deposit(+) / Withdraw(-) </label>                
+                </div>
+                <div class="form-group col-md-6">
+                    <input class="form-control" type="number" id="amt" name="amt"> 
+                </div>
+                <input type="submit" value="Submit" class="btn btn-info col-md-2" style="display: inline-block; margin-left: 20px;">
+            </form>
+        </div>
+        <br>
+        <div class="col-md-8">
+            <h3>Transactions History</h3>
+            <table class="table table-striped">
+                <tr>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+                @foreach(var trans in @Model.transactions)
+                {
+                    <tr>
+                        <td>@trans.amount</td>
+                        <td>@trans.created_at.ToString("MMM dd yyyy")</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+

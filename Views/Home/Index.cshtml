@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+}
+@model LoginViewModel
+
+<h1>Login <a href="/register" style="font-size: 12pt; text-decoration: underline; padding-left: 6em;">( Need to Register ? )</a></h1>
+<br>
+<div class="col-sm-4">
+    <form method="post" asp-controller=“Home” asp-action="LoginUser">
+        <div class="form-group">
+            <label asp-for="LogEmail"></label>
+            <span asp-validation-for="LogEmail"></span>
+            <input class="form-control" asp-for="LogEmail" >
+        </div>
+        <div class="form-group">
+            <label asp-for="LogPassword"></label>
+            <span asp-validation-for="LogPassword"></span>
+            <input class="form-control" asp-for="LogPassword" >
+        </div>
+        <input type="submit" value="Submit" class="btn btn-info">
+    </form>
+</div>

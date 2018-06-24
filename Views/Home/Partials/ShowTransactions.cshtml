@@ -1,0 +1,16 @@
+@model User
+
+<h2>Transactions History</h2>
+<table>
+    <tr>
+        <th>Amount</th>
+        <th>Date</th>
+    </tr>
+    @for(var i = @ViewBag.showTransactions.Count -1; i > -1; i--)
+    {
+        <tr>
+            <td>@ViewBag.showTransactions[i].amount</td>
+            <td>@ViewBag.showTransactions[i].created_at.ToString("MMM dd yyyy")</td>
+        </tr>
+    }
+</table>
